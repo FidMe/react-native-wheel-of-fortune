@@ -1,7 +1,7 @@
 # react-native-wheel-of-fortune
 
-[![Maintainability](https://api.codeclimate.com/v1/badges/516712bad4032cba5439/maintainability)](https://codeclimate.com/github/eftalyurtseven/react-native-wheel-of-fortune)
-[![Download](https://img.shields.io/npm/dm/react-native-wheel-of-fortune.svg)](https://github.com/eftalyurtseven/react-native-wheel-of-fortune)
+Forked from [suusofttruongnv/react-native-wheel-of-fortune](https://github.com/suusofttruongnv/react-native-wheel-of-fortune)
+We did some modifications to fit our needs.
 
 Wheel of fortune component for React Native
 
@@ -102,23 +102,10 @@ const wheelOptions = {
 
 For more information and test go to [/Example](https://github.com/eftalyurtseven/react-native-wheel-of-fortune/tree/master/Example) folder.
 
-## TODO
-
-- Reset Wheel Functions
-
-## Contributing
-
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
-
 ## Contributors
 
 [![Joaquin Beceiro](https://avatars0.githubusercontent.com/u/10049759?s=50 "Joaquin Beceiro")](https://github.com/JoaquinBeceiro)
 [<img src="https://avatars0.githubusercontent.com/u/50332377" width="50"/>](https://github.com/Rubinjo)
-
-Forked from [suusofttruongnv/react-native-wheel-of-fortune](https://github.com/suusofttruongnv/react-native-wheel-of-fortune)
-We did some modifications to fit our needs.
 
 ## License
 
