@@ -40,6 +40,7 @@ class WheelOfFortune extends Component {
 
     this.numberOfSegments = this.RewardCount;
     this.fontSize = 28;
+    this.verticalFontSize = 24;
     this.oneTurn = 360;
     this.angleBySegment = this.oneTurn / this.numberOfSegments;
     this.angleOffset = this.angleBySegment / 2;
@@ -164,20 +165,20 @@ class WheelOfFortune extends Component {
   _textRender = (x, y, number, i) => (
     <Text
       x={x - number.length * 5}
-      y={y - 90}
+      y={number.length > 4 ? y - 60 : y - 90}
       fill={
         this.props.options.textColor ? this.props.options.textColor : "#fff"
       }
       textAnchor="middle"
-      fontSize={this.fontSize}
+      fontSize={number.length > 4 ? this.verticalFontSize : this.fontSize}
       fontWeight="900"
       fontFamily="Nunito-Black"
     >
       {Array.from({ length: number.length }).map((_, j) => {
         // Render reward text vertically
-        if (this.props.options.textAngle === "vertical") {
+        if (this.props.options.textAngle === "vertical" || number.length > 4) {
           return (
-            <TSpan x={x} dy={this.fontSize} key={`arc-${i}-slice-${j}`}>
+            <TSpan x={x} dy={20} key={`arc-${i}-slice-${j}`}>
               {number.charAt(j)}
             </TSpan>
           );
