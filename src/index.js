@@ -10,7 +10,7 @@ import {
 import * as d3Shape from "d3-shape";
 
 import Svg, { G, Text, TSpan, Path } from "react-native-svg";
-import { ImageRender } from "react-native-wheel-of-fortune/src/imageReward";
+import { ImageRender } from "./imageReward";
 import _ from "underscore";
 
 const AnimatedSvg = Animated.createAnimatedComponent(Svg);
