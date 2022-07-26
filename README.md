@@ -12,9 +12,9 @@ Wheel of fortune component for React Native
 Use the package manager npm and yarn to install react-native-wheel-of-fortune.
 
 ```bash
-yarn add react-native-wheel-of-fortune
+yarn add @fidme/react-native-wheel-of-fortune
 # or using npm
-npm i react-native-wheel-of-fortune --save
+npm i @fidme/react-native-wheel-of-fortune --save
 ```
 
 ## Dependencies
@@ -24,7 +24,7 @@ WheelofFortune is dependent on [react-native-svg](https://github.com/react-nativ
 ## Import
 
 ```js
-import WheelOfFortune from "react-native-wheel-of-fortune";
+import WheelOfFortune from "@fidme/react-native-wheel-of-fortune";
 ```
 
 ## Properties
