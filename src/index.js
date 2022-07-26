@@ -9,8 +9,9 @@ import {
 } from "react-native";
 import * as d3Shape from "d3-shape";
 
-import Svg, { G, Text, TSpan, Path, Pattern, SvgCss } from "react-native-svg";
+import Svg, { G, Text, TSpan, Path } from "react-native-svg";
 import { ImageRender } from "react-native-wheel-of-fortune/src/imageReward";
+import _ from "underscore";
 
 const AnimatedSvg = Animated.createAnimatedComponent(Svg);
 
@@ -99,7 +100,7 @@ class WheelOfFortune extends Component {
 
   makeWheel = () => {
     const data = Array.from({ length: this.numberOfSegments }).fill(1);
-    const arcs = d3Shape.pie()(data);
+    const arcs = _.sortBy(d3Shape.pie()(data), (a) => a.index);
     var colors = this.props.options.colors
       ? this.props.options.colors
       : [
