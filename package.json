@@ -1,6 +1,6 @@
 {
   "name": "@fidme/react-native-wheel-of-fortune",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "React Native Wheel Of Fortune Component.",
   "main": "index.js",
   "scripts": {
