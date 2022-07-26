@@ -1,5 +1,5 @@
 {
-  "name": "react-native-wheel-of-fortune",
+  "name": "@fidme/react-native-wheel-of-fortune",
   "version": "2.1.0",
   "description": "React Native Wheel Of Fortune Component.",
   "main": "index.js",
@@ -27,5 +27,6 @@
   "bugs": {
     "url": "https://github.com/eftalyurtseven/react-native-wheel-of-fortune/issues"
   },
-  "homepage": "https://github.com/eftalyurtseven/react-native-wheel-of-fortune#readme"
+  "homepage": "https://github.com/eftalyurtseven/react-native-wheel-of-fortune#readme",
+  "devDependencies": {}
 }
