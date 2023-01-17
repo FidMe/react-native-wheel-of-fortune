@@ -181,6 +181,8 @@ class WheelOfFortune extends Component {
   };
 
   _textRender = (x, y, label, i) => {
+    if (!label) return null;
+
     const COMMON_MULTIPLE = 48;
     const LINES_MAX_LENGTH = COMMON_MULTIPLE / this.numberOfSegments;
     const OFFSET_POSITION_Y = this.numberOfSegments === 4 ? 10 : 40;
@@ -268,7 +270,7 @@ class WheelOfFortune extends Component {
             <G y={width / 2} x={width / 2}>
               {this._wheelPaths.map((arc, i) => {
                 const [x, y] = arc.centroid;
-                const label = arc.value.toString();
+                const label = arc.value?.toString();
 
                 return (
                   <G key={`arc-${i}`}>
