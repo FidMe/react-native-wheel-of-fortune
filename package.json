@@ -28,5 +28,7 @@
     "url": "https://github.com/eftalyurtseven/react-native-wheel-of-fortune/issues"
   },
   "homepage": "https://github.com/eftalyurtseven/react-native-wheel-of-fortune#readme",
-  "devDependencies": {}
+  "devDependencies": {
+    "prettier": "2.8.3"
+  }
 }

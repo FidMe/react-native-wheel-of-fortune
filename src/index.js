@@ -163,43 +163,63 @@ class WheelOfFortune extends Component {
     });
   };
 
-  _textRender = (x, y, label, i) => {
+  _splitLabel = (string, lineLength) => {
+    const words = string.split(" ");
+    const lines = [];
+    const line = { current: "" };
+    for (let i = 0; i < words.length; i++) {
+      const currentWord = words[i];
+      if (line.current.length + currentWord.length <= lineLength) {
+        line.current += currentWord + " ";
+      } else {
+        lines.push(line.current);
+        line.current = currentWord + " ";
+      }
+    }
+    lines.push(line.current);
+    return lines;
+  };
 
+  _textRender = (x, y, label, i) => {
     const COMMON_MULTIPLE = 48;
-    const LINES_MAX_LENGTH = COMMON_MULTIPLE / this.numberOfSegments
+    const LINES_MAX_LENGTH = COMMON_MULTIPLE / this.numberOfSegments;
     const START_POSITION_Y = this.numberOfSegments === 4 ? 10 : 30;
 
     return (
-        <Text
-            x={x - label.length * 5}
-            y={label.length > 4 ? y - 60 : y - 90}
-            fill={
-              this.props.options.textColor ? this.props.options.textColor : "#fff"
-            }
-            textAnchor="middle"
-            fontSize={label.length > 4 ? this.verticalFontSize : this.fontSize}
-            fontWeight="900"
-            fontFamily="Nunito-Black"
-        >
-          {
-            this.props.options.textAngle === "vertical" ?
-                <TSpan x={x} dy={20} key={`arc-${i}-slice`}>
-                  {label}
-                </TSpan> :
-                label.length > LINES_MAX_LENGTH && label.indexOf(" ") >= 0 ? this._splitLabel(label,  LINES_MAX_LENGTH ).map((word, index) => (
-
-                    <TSpan x={x} y={y - START_POSITION_Y + index * 30} key={`arc-${i}-slice-${index}`}>
-                      {word}
-                    </TSpan>
-
-                )) : <TSpan x={x} y={y - 10} key={`arc-${i}-slice}`}>
-                  {label}
-                </TSpan>
-          }
-          <ImageRender x={x} y={y + 5} i={i} options={this.props.options} />
-        </Text>
+      <Text
+        x={x - label.length * 5}
+        y={label.length > 4 ? y - 60 : y - 90}
+        fill={
+          this.props.options.textColor ? this.props.options.textColor : "#fff"
+        }
+        textAnchor="middle"
+        fontSize={label.length > 4 ? this.verticalFontSize : this.fontSize}
+        fontWeight="900"
+        fontFamily="Nunito-Black"
+      >
+        {this.props.options.textAngle === "vertical" ? (
+          <TSpan x={x} dy={20} key={`arc-${i}-slice`}>
+            {label}
+          </TSpan>
+        ) : label.length > LINES_MAX_LENGTH && label.indexOf(" ") >= 0 ? (
+          this._splitLabel(label, LINES_MAX_LENGTH).map((word, index) => (
+            <TSpan
+              x={x}
+              y={y - START_POSITION_Y + index * 30}
+              key={`arc-${i}-slice-${index}`}
+            >
+              {word}
+            </TSpan>
+          ))
+        ) : (
+          <TSpan x={x} y={y - 10} key={`arc-${i}-slice}`}>
+            {label}
+          </TSpan>
+        )}
+        <ImageRender x={x} y={y + 10} i={i} options={this.props.options} />
+      </Text>
     );
-  }
+  };
 
   _renderSvgWheel = () => {
     return (
