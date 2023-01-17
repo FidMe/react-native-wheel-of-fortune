@@ -183,7 +183,7 @@ class WheelOfFortune extends Component {
   _textRender = (x, y, label, i) => {
     const COMMON_MULTIPLE = 48;
     const LINES_MAX_LENGTH = COMMON_MULTIPLE / this.numberOfSegments;
-    const START_POSITION_Y = this.numberOfSegments === 4 ? 10 : 30;
+    const OFFSET_POSITION_Y = this.numberOfSegments === 4 ? 10 : 40;
 
     return (
       <Text
@@ -205,7 +205,7 @@ class WheelOfFortune extends Component {
           this._splitLabel(label, LINES_MAX_LENGTH).map((word, index) => (
             <TSpan
               x={x}
-              y={y - START_POSITION_Y + index * 30}
+              y={y - OFFSET_POSITION_Y + index * 30}
               key={`arc-${i}-slice-${index}`}
             >
               {word}
