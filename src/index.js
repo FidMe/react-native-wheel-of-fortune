@@ -163,39 +163,43 @@ class WheelOfFortune extends Component {
     });
   };
 
-  _textRender = (x, y, number, i) => (
-    <Text
-      x={x - number.length * 5}
-      y={number.length > 4 ? y - 60 : y - 90}
-      fill={
-        this.props.options.textColor ? this.props.options.textColor : "#fff"
-      }
-      textAnchor="middle"
-      fontSize={number.length > 4 ? this.verticalFontSize : this.fontSize}
-      fontWeight="900"
-      fontFamily="Nunito-Black"
-    >
-      {Array.from({ length: number.length }).map((_, j) => {
-        // Render reward text vertically
-        if (this.props.options.textAngle === "vertical" || number.length > 4) {
-          return (
-            <TSpan x={x} dy={20} key={`arc-${i}-slice-${j}`}>
-              {number.charAt(j)}
-            </TSpan>
-          );
-        }
-        // Render reward text horizontally
-        else {
-          return (
-            <TSpan y={y - 20} key={`arc-${i}-slice-${j}`}>
-              {number.charAt(j)}
-            </TSpan>
-          );
-        }
-      })}
-      <ImageRender x={x} y={y} i={i} options={this.props.options} />
-    </Text>
-  );
+  _textRender = (x, y, label, i) => {
+
+    const COMMON_MULTIPLE = 48;
+    const LINES_MAX_LENGTH = COMMON_MULTIPLE / this.numberOfSegments
+    const START_POSITION_Y = this.numberOfSegments === 4 ? 10 : 30;
+
+    return (
+        <Text
+            x={x - label.length * 5}
+            y={label.length > 4 ? y - 60 : y - 90}
+            fill={
+              this.props.options.textColor ? this.props.options.textColor : "#fff"
+            }
+            textAnchor="middle"
+            fontSize={label.length > 4 ? this.verticalFontSize : this.fontSize}
+            fontWeight="900"
+            fontFamily="Nunito-Black"
+        >
+          {
+            this.props.options.textAngle === "vertical" ?
+                <TSpan x={x} dy={20} key={`arc-${i}-slice`}>
+                  {label}
+                </TSpan> :
+                label.length > LINES_MAX_LENGTH && label.indexOf(" ") >= 0 ? this._splitLabel(label,  LINES_MAX_LENGTH ).map((word, index) => (
+
+                    <TSpan x={x} y={y - START_POSITION_Y + index * 30} key={`arc-${i}-slice-${index}`}>
+                      {word}
+                    </TSpan>
+
+                )) : <TSpan x={x} y={y - 10} key={`arc-${i}-slice}`}>
+                  {label}
+                </TSpan>
+          }
+          <ImageRender x={x} y={y + 5} i={i} options={this.props.options} />
+        </Text>
+    );
+  }
 
   _renderSvgWheel = () => {
     return (
@@ -244,7 +248,7 @@ class WheelOfFortune extends Component {
             <G y={width / 2} x={width / 2}>
               {this._wheelPaths.map((arc, i) => {
                 const [x, y] = arc.centroid;
-                const number = arc.value.toString();
+                const label = arc.value.toString();
 
                 return (
                   <G key={`arc-${i}`}>
@@ -256,7 +260,7 @@ class WheelOfFortune extends Component {
                       }
                       origin={`${x}, ${y}`}
                     >
-                      {this._textRender(x, y, number, i)}
+                      {this._textRender(x, y, label, i)}
                     </G>
                   </G>
                 );
