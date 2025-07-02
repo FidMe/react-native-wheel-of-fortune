@@ -1,2 +1,2 @@
-import WheelOfFortune from './src/'
-module.exports = WheelOfFortune
+import WheelOfFortune from './src/';
+export default WheelOfFortune;
